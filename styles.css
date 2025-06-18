@@ -1,0 +1,22 @@
+/* styles.css */
+.social-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.facebook-button {
+    background-color: #1877f2;
+    color: #fff;
+}
+
+.facebook-button:hover {
+    background-color: #166fe5;
+}
+
+.fab {
+    margin-right: 10px;
+}
