@@ -1,444 +1,85 @@
-
-import React, { useEffect, useRef, useState } from "react";
-import Head from "next/head";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
-import { Volume2, VolumeX, Play, Pause } from "lucide-react";
-import Link from "next/link";
-
-export default function LoginPage() {
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  // King Von sample URLs (using placeholder audio for demo)
-  const kingVonSamples = [
-    "
-import React, { useEffect, useRef, useState } from "react";
-import Head from "next/head";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
-import { Volume2, VolumeX, Play, Pause } from "lucide-react";
-import Link from "next/link";
-
-export default function LoginPage() {
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  // King Von sample URLs (using placeholder audio for demo)
-  const kingVonSamples = [
-    "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav", // Placeholder - replace with actual King Von samples
-    "https://www.soundjay.com/misc/sounds/bell-ringing-04.wav", // Placeholder - replace with actual King Von samples
-  ];
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (audio) {
-      // Set volume to 30% for background music
-      audio.volume = 0.3;
-      audio.loop = true;
-      
-      // Try to autoplay (modern browsers may block this)
-      const playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlaying(true);
-          })
-          .catch((error) => {
-            console.log("Autoplay prevented:", error);
-            // Autoplay was prevented, user will need to click play
-          });
-      }
-    }
-
-    return () => {
-      if (audio) {
-        audio.pause();
-      }
-    };
-  }, []);
-
-  const togglePlayPause = () => {
-    const audio = audioRef.current;
-    if (audio) {
-      if (isPlaying) {
-        audio.pause();
-        setIsPlaying(false);
-      } else {
-        audio.play();
-        setIsPlaying(true);
-      }
-    }
-  };
-
-  const toggleMute = () => {
-    const audio = audioRef.current;
-    if (audio) {
-      audio.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
-
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Mock login - redirect to main app
-    window.location.href = "/";
-  };
-
-  return (
-    <>
-      <Head>
-        <title>Login - HACKLINK-XD</title>
-        <meta name="description" content="Login to HACKLINK-XD" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      {/* Background Audio */}
-      <audio
-        ref={audioRef}
-        src={kingVonSamples[0]}
-        preload="auto"
-        onEnded={() => {
-          // Switch to next sample when current one ends
-          if (audioRef.current) {
-            audioRef.current.src = kingVonSamples[Math.floor(Math.random() * kingVonSamples.length)];
-            audioRef.current.play();
-          }
-        }}
-      />
-
-      <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4 relative overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse animation-delay-2000"></div>
-          <div className="absolute top-40 left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse animation-delay-4000"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4 relative overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
+            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse animation-delay-2000"></div>
+            <div class="absolute top-40 left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse animation-delay-4000"></div>
         </div>
 
-        {/* Music Controls */}
-        <div className="absolute top-4 right-4 flex space-x-2 z-10">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={togglePlayPause}
-            className="bg-black/20 border-white/20 text-white hover:bg-white/10"
-          >
-            {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={toggleMute}
-            className="bg-black/20 border-white/20 text-white hover:bg-white/10"
-          >
-            {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-          </Button>
+        <!-- Music Controls -->
+        <div class="absolute top-4 right-4 flex space-x-2 z-10">
+            <button id="play-pause-button" class="bg-white/10 border-white/20 text-white hover:bg-white/20 p-2 rounded">
+                <i class="fa fa-play" id="play-pause-icon"></i>
+            </button>
+            <button id="mute-button" class="bg-white/10 border-white/20 text-white hover:bg-white/20 p-2 rounded">
+                <i class="fa fa-volume-up" id="volume-icon"></i>
+            </button>
         </div>
 
-        <div className="w-full max-w-md relative z-10">
-          {/* Logo and Title */}
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-2xl">
-              <span className="text-white font-bold text-2xl">HX</span>
+        <div class="w-full max-w-md relative z-10">
+            <!-- Logo and Title -->
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-2xl">
+                    <span class="text-white font-bold text-2xl">HX</span>
+                </div>
+                <h1 class="text-4xl font-bold text-white mb-2">HACKLINK-XD</h1>
+                <p class="text-purple-200">Connect with the culture</p>
             </div>
-            <h1 className="text-4xl font-bold text-white mb-2">HACKLINK-XD</h1>
-            <p className="text-purple-200">Connect with the culture</p>
-          </div>
 
-          {/* Login Card */}
-          <Card className="bg-black/40 backdrop-blur-lg border-white/20 shadow-2xl">
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl text-white">Welcome Back</CardTitle>
-              <p className="text-purple-200">Sign in to your account</p>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <form onSubmit={handleLogin} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="text-white">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="bg-white/10 border-white/20 text-white placeholder:text-gray-300"
-                    required
-                  />
+            <!-- Login Card -->
+            <div class="bg-black/40 backdrop-blur-lg border-white/20 shadow-2xl p-4 rounded">
+                <h2 class="text-2xl text-white text-center">Welcome Back</h2>
+                <p class="text-purple-200 text-center">Sign in to your account</p>
+                <form id="login-form" class="space-y-4 mt-4">
+                    <div class="space-y-2">
+                        <label for="email" class="text-white">Email</label>
+                        <input id="email" type="email" placeholder="Enter your email" class="bg-white/10 border-white/20 text-white placeholder:text-gray-300 p-2 w-full rounded">
+                    </div>
+                    <div class="space-y-2">
+                        <label for="password" class="text-white">Password</label>
+                        <input id="password" type="password" placeholder="Enter your password" class="bg-white/10 border-white/20 text-white placeholder:text-gray-300 p-2 w-full rounded">
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold py-3 rounded-lg shadow-lg transform transition hover:scale-105">
+                        Sign In
+                    </button>
+                </form>
+
+                <div class="relative mt-4">
+                    <hr class="bg-white/20 h-px border-none">
+                    <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/40 px-3 text-purple-200 text-sm">
+                        or
+                    </span>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="password" className="text-white">Password</Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="bg-white/10 border-white/20 text-white placeholder:text-gray-300"
-                    required
-                  />
+
+                <div class="space-y-3 mt-4">
+                    <button class="w-full bg-white/10 border-white/20 text-white hover:bg-white/20 p-2 rounded">
+                        Continue with Google
+                    </button>
+                    <button class="w-full bg-white/10 border-white/20 text-white hover:bg-white/20 p-2 rounded">
+                        Continue with Facebook
+                    </button>
                 </div>
-                <Button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold py-3 rounded-lg shadow-lg transform transition hover:scale-105"
-                >
-                  Sign In
-                </Button>
-              </form>
 
-              <div className="relative">
-                <Separator className="bg-white/20" />
-                <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/40 px-3 text-purple-200 text-sm">
-                  or
-                </span>
-              </div>
-
-              <div className="space-y-3">
-                <Button
-                  variant="outline"
-                  className="w-full bg-white/10 border-white/20 text-white hover:bg-white/20"
-                >
-                  Continue with Google
-                </Button>
-                <Button
-                  variant="outline"
-                  className="w-full bg-white/10 border-white/20 text-white hover:bg-white/20"
-                >
-                  Continue with Facebook
-                </Button>
-              </div>
-
-              <div className="text-center">
-                <p className="text-purple-200 text-sm">
-                  Don't have an account?{" "}
-                  <Link href="/register" className="text-purple-300 hover:text-white font-semibold">
-                    Sign up
-                  </Link>
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* King Von Tribute */}
-          <div className="text-center mt-6">
-            <p className="text-purple-300 text-sm">🎵 Playing King Von samples</p>
-            <p className="text-purple-400 text-xs mt-1">R.I.P. King Von 👑</p>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
-", // Placeholder - replace with actual King Von samples
-    "https://www.soundjay.com/misc/sounds/bell-ringing-04.wav", // Placeholder - replace with actual King Von samples
-  ];
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (audio) {
-      // Set volume to 30% for background music
-      audio.volume = 0.3;
-      audio.loop = true;
-      
-      // Try to autoplay (modern browsers may block this)
-      const playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlaying(true);
-          })
-          .catch((error) => {
-            console.log("Autoplay prevented:", error);
-            // Autoplay was prevented, user will need to click play
-          });
-      }
-    }
-
-    return () => {
-      if (audio) {
-        audio.pause();
-      }
-    };
-  }, []);
-
-  const togglePlayPause = () => {
-    const audio = audioRef.current;
-    if (audio) {
-      if (isPlaying) {
-        audio.pause();
-        setIsPlaying(false);
-      } else {
-        audio.play();
-        setIsPlaying(true);
-      }
-    }
-  };
-
-  const toggleMute = () => {
-    const audio = audioRef.current;
-    if (audio) {
-      audio.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
-
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Mock login - redirect to main app
-    window.location.href = "/";
-  };
-
-  return (
-    <>
-      <Head>
-        <title>Login - HACKLINK-XD</title>
-        <meta name="description" content="Login to HACKLINK-XD" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      {/* Background Audio */}
-      <audio
-        ref={audioRef}
-        src={kingVonSamples[0]}
-        preload="auto"
-        onEnded={() => {
-          // Switch to next sample when current one ends
-          if (audioRef.current) {
-            audioRef.current.src = kingVonSamples[Math.floor(Math.random() * kingVonSamples.length)];
-            audioRef.current.play();
-          }
-        }}
-      />
-
-      <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4 relative overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse animation-delay-2000"></div>
-          <div className="absolute top-40 left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse animation-delay-4000"></div>
-        </div>
-
-        {/* Music Controls */}
-        <div className="absolute top-4 right-4 flex space-x-2 z-10">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={togglePlayPause}
-            className="bg-black/20 border-white/20 text-white hover:bg-white/10"
-          >
-            {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={toggleMute}
-            className="bg-black/20 border-white/20 text-white hover:bg-white/10"
-          >
-            {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-          </Button>
-        </div>
-
-        <div className="w-full max-w-md relative z-10">
-          {/* Logo and Title */}
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-2xl">
-              <span className="text-white font-bold text-2xl">HX</span>
+                <div class="text-center mt-4">
+                    <p class="text-purple-200 text-sm">
+                        Don't have an account? <a href="#" class="text-purple-300 hover:text-white font-semibold">Sign up</a>
+                    </p>
+                </div>
             </div>
-            <h1 className="text-4xl font-bold text-white mb-2">HACKLINK-XD</h1>
-            <p className="text-purple-200">Connect with the culture</p>
-          </div>
-
-          {/* Login Card */}
-          <Card className="bg-black/40 backdrop-blur-lg border-white/20 shadow-2xl">
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl text-white">Welcome Back</CardTitle>
-              <p className="text-purple-200">Sign in to your account</p>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <form onSubmit={handleLogin} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="text-white">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="bg-white/10 border-white/20 text-white placeholder:text-gray-300"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="password" className="text-white">Password</Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="bg-white/10 border-white/20 text-white placeholder:text-gray-300"
-                    required
-                  />
-                </div>
-                <Button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold py-3 rounded-lg shadow-lg transform transition hover:scale-105"
-                >
-                  Sign In
-                </Button>
-              </form>
-
-              <div className="relative">
-                <Separator className="bg-white/20" />
-                <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/40 px-3 text-purple-200 text-sm">
-                  or
-                </span>
-              </div>
-
-              <div className="space-y-3">
-                <Button
-                  variant="outline"
-                  className="w-full bg-white/10 border-white/20 text-white hover:bg-white/20"
-                >
-                  Continue with Google
-                </Button>
-                <Button
-                  variant="outline"
-                  className="w-full bg-white/10 border-white/20 text-white hover:bg-white/20"
-                >
-                  Continue with Facebook
-                </Button>
-              </div>
-
-              <div className="text-center">
-                <p className="text-purple-200 text-sm">
-                  Don't have an account?{" "}
-                  <Link href="/register" className="text-purple-300 hover:text-white font-semibold">
-                    Sign up
-                  </Link>
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* King Von Tribute */}
-          <div className="text-center mt-6">
-            <p className="text-purple-300 text-sm">🎵 Playing King Von samples</p>
-            <p className="text-purple-400 text-xs mt-1">R.I.P. King Von 👑</p>
-          </div>
         </div>
-      </div>
-    </>
-  );
-}
+    </div>
+
+    <audio id="background-audio" src="background-music.mp3" loop></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
