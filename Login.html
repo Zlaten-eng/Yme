@@ -1,0 +1,54 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup/Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="logo.png" alt="Logo">
+        </nav>
+    </header>
+    <main>
+        <!-- Signup Form -->
+        <section id="signup-form">
+            <h2>Create Account</h2>
+            <button class="social-button facebook-button">
+                <i class="fab fa-facebook-f"></i> Continue with Facebook
+            </button>
+            <p>Or continue with email</p>
+            <form>
+                <input type="text" placeholder="Full Name">
+                <input type="email" placeholder="Email Address">
+                <input type="password" placeholder="Password">
+                <input type="password" placeholder="Confirm Password">
+                <button>Signup</button>
+            </form>
+            <p>By signing up, you agree to our <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>.</p>
+            <p>Already have an account? <a href="#login-form">Login</a></p>
+        </section>
+        
+        <!-- Login Form -->
+        <section id="login-form" style="display: none;">
+            <h2>Login</h2>
+            <button class="social-button facebook-button">
+                <i class="fab fa-facebook-f"></i> Continue with Facebook
+            </button>
+            <p>Or login with email</p>
+            <form>
+                <input type="email" placeholder="Email Address">
+                <input type="password" placeholder="Password">
+                <button>Login</button>
+                <p><a href="#">Forgot Password?</a></p>
+            </form>
+            <p>Don't have an account? <a href="#signup-form">Signup</a></p>
+        </section>
+    </main>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
